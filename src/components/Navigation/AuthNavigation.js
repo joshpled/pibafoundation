@@ -11,6 +11,8 @@ function AuthNavigation() {
             <Link to={layout + path}>{name}</Link>
           </li>
         );
+      } else {
+        return null;
       }
     });
   };

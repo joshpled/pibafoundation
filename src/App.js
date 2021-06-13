@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import { Redirect, Route } from "react-router-dom";
-import AdminLayout from "layouts/Admin.js";
-import AuthLayout from "layouts/Auth.js";
+import Admin from "layouts/Admin.js";
+import Auth from "layouts/Auth.js";
 
 function App() {
-  const userExist = useState(false);
-  if (userExist) {
-    return <Redirect from="/" to="/auth/login" />;
+  let route;
+  if (true) {
+    route = <Redirect from="/" to="/admin/dashboard" />;
+  } else {
+    route = <Redirect from="/" to="/auth/login" />;
   }
   return (
     <>
-      <Redirect from="/" to="/admin/dashboard" />
-      <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
-      <Route path="/auth" render={(props) => <AuthLayout {...props} />} />
+      <Route path="/auth" render={(props) => <Auth {...props} />} />
+      <Route path="/admin" render={(props) => <Admin {...props} />} />
+      {route}
     </>
   );
 }

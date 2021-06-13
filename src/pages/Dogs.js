@@ -1,13 +1,7 @@
 import React from "react";
-import { Table } from "components";
 
 function Dogs() {
-  return (
-    <div>
-      Dogs Page
-      <Table />
-    </div>
-  );
+  return <div>Dogs Page</div>;
 }
 
 export default Dogs;
