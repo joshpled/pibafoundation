@@ -1,12 +1,13 @@
 import React from "react";
+
 import { Route, Switch } from "react-router-dom";
 import routes from "routes";
-import { AdminNavigation } from "components";
+import { AuthNavigation } from "components";
 
-function Admin() {
+function Auth() {
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
-      if (prop.layout === "/admin") {
+      if (prop.layout === "/auth") {
         return <Route path={prop.layout + prop.path} key={key} render={(props) => <prop.component {...props} />} />;
       } else {
         return null;
@@ -16,7 +17,7 @@ function Admin() {
   return (
     <div style={{ display: "flex" }}>
       <div style={{ height: "100vh", marginRight: "1em" }}>
-        <AdminNavigation />
+        <AuthNavigation />
       </div>
       <div style={{ margin: "1em" }}>
         <Switch>{getRoutes(routes)}</Switch>
@@ -25,4 +26,4 @@ function Admin() {
   );
 }
 
-export default Admin;
+export default Auth;
