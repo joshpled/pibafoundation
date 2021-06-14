@@ -5,5 +5,5 @@ export const getShelterLuv = async () => {
     },
   });
   let respData = await resp.json();
-  return await respData.animals;
+  return await console.log(respData.animals);
 };
