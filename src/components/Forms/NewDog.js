@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useRef } from "react";
 
 function NewDog() {
+  const name = useRef("");
+  const age = useRef("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label>Name:</label>
-      <input type="text" /> <br></br>
+      <input type="text" ref={name} /> <br></br>
       <label>Age:</label>
-      <input type="number" />
+      <input type="number" ref={age} />
       <br></br>
+      <button type="submit">Submit</button>
     </form>
   );
 }
