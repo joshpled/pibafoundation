@@ -1,51 +1,69 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import MaterialTable from "material-table";
 
-function DogTable() {
+function DogTable({ data }) {
+  const [dogsData, setdogsData] = useState([]);
+
+  useEffect(() => {
+    const abortController = new AbortController();
+    setdogsData(data);
+    return () => {
+      abortController.abort();
+    };
+  }, [data]);
+
   return (
     <div style={{ width: "80vw", margin: "20px" }}>
       <MaterialTable
         options={{
-          search: false,
-          showFirstLastPageButtons: false,
           selection: true,
+          pageSizeOptions: [10, 25, 50, 100],
+          pageSize: 10,
+          toolbar: true,
         }}
         columns={[
-          { title: "ID", field: "id" },
-          { title: "Internal-ID", field: "internal-id" },
-          { title: "Name", field: "name" },
-          { title: "LitterGroupId", field: "littergroupid" },
-          { title: "Type", field: "type" },
-          { title: "CurrentLocation", field: "currentlocation" },
-          { title: "Sex", field: "sex" },
-          { title: "Status", field: "status" },
-          { title: "InFoster", field: "infoster" },
-          { title: "CurrentWeightPounds", field: "currentweightpounds" },
-          { title: "Size", field: "size" },
-          { title: "Altered", field: "altered" },
-          { title: "DOBUnixTime", field: "dobunixtime" },
-          { title: "Age", field: "age" },
-          { title: "CoverPhoto", field: "coverphoto" },
-          { title: "Photos", field: "photos" },
-          { title: "Videos", field: "videos" },
-          { title: "Breed", field: "breed" },
-          { title: "Color", field: "color" },
-          { title: "Pattern", field: "pattern" },
-          { title: "AdoptionFeeGroup", field: "adoptionfeegroup" },
-          { title: "Description", field: "description" },
-          { title: "PreviousIds", field: "previousids" },
-          { title: "Microchips", field: "microchips" },
-          { title: "LastIntakeUnixTime", field: "lastintakeunixtime" },
-          { title: "Attributes", field: "attributes" },
-          { title: "LastUpdatedUnixTime", field: "lastupdatedunixtime" },
+          { title: "id", field: "id", type: "numeric", hidden: true },
+          { title: "ID", field: "ID", hidden: true },
+          { title: "Name", field: "Name" },
+          { title: "Age", field: "Age", type: "numeric" },
+          { title: "Breed", field: "Breed" },
+          { title: "Color", field: "Color" },
+          { title: "CoverPhoto", field: "CoverPhoto", hidden: true },
+          { title: "Weight", field: "CurrentWeightPounds" },
+          { title: "Date of Birth", field: "DOBUnixTime" },
+          { title: "Description", field: "Description", hidden: true },
+          { title: "InFoster", field: "InFoster" },
+          { title: "LastIntakeUnixTime", field: "LastIntakeUnixTime", hidden: true },
+          { title: "LastUpdatedUnixTime", field: "LastUpdatedUnixTime", hidden: true },
+          { title: "Pattern", field: "Pattern", hidden: true },
+          { title: "Photos", field: "Photos", hidden: true },
+          { title: "Sex", field: "Sex" },
+          { title: "Size", field: "Size" },
+          { title: "Status", field: "Status" },
+          { title: "Type", field: "Type" },
         ]}
-        data={[
+        data={dogsData}
+        detailPanel={[
           {
-            name: "Josh",
-            age: 12,
+            icon: "description",
+            tooltip: "Show Description",
+            render: (rowData) => {
+              return (
+                <div
+                  style={{
+                    fontSize: 16,
+                    textAlign: "center",
+                    color: "white",
+                    backgroundColor: "#E53935",
+                  }}
+                >
+                  {rowData.Description}
+                </div>
+              );
+            },
           },
         ]}
-        title="Dog's Table"
+        title="ShelterLuv Dog Data"
       />
     </div>
   );
