@@ -1,4 +1,4 @@
-import { Dashboard, Employees, Events, Dogs, Cats, Volunteers, Login, Register } from "pages";
+import { Dashboard, Employees, Events, Dogs, Volunteers, Login, Register } from "pages";
 
 var routes = [
   {
@@ -24,12 +24,6 @@ var routes = [
     layout: "/admin",
     name: "Dogs",
     component: Dogs,
-  },
-  {
-    path: "/cats",
-    layout: "/admin",
-    name: "Cats",
-    component: Cats,
   },
   {
     path: "/volunteers",

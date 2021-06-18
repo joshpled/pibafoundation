@@ -6,6 +6,7 @@ function Dogs() {
   const [dogs, setDogs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showCards, setshowCards] = useState(false);
+  const [showNewDogForm, setshowNewDogForm] = useState(false);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -87,6 +88,15 @@ function Dogs() {
   const handleCheck = (e) => {
     setshowCards((prevState) => !prevState);
   };
+  const handleShowForm = (e) => {
+    setshowNewDogForm((prevState) => !prevState);
+  };
+
+  useEffect(() => {
+    return () => {
+      setLoading(true);
+    };
+  }, []);
 
   return (
     <div>
@@ -95,9 +105,12 @@ function Dogs() {
       <div>
         <p>Cards</p>
         <input type="checkbox" onChange={handleCheck} defaultChecked={showCards} />
+        <button onClick={handleShowForm}>{showNewDogForm ? "Close Form" : "New Dog"}</button>
+      </div>
+      <div style={{ display: showNewDogForm ? "" : "none", margin: "10px" }}>
+        <NewDog />
       </div>
       <div style={{ display: showCards ? "none" : "" }}>{dogs.length > 0 && <DogTable data={dogs.length > 0 && dogs} />}</div>
-      <NewDog />
     </div>
   );
 }
