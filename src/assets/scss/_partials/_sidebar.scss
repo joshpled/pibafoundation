@@ -1,0 +1,43 @@
+@import "./variables";
+
+.sidebar {
+  background: linear-gradient(0deg, hsla(0, 0%, 0%, 0.4), hsla(0, 0%, 0%, 0.8)), url("https://i.imgur.com/OCzFYPZ.jpeg") no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  position: fixed;
+  top: 0;
+  width: $sidebar-width;
+  height: 100vh;
+  .sidebar-header {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    padding: 30px 0;
+    color: white;
+    .sidebar-header-icon {
+      height: 49px;
+    }
+    .sidebar-header-brand {
+      margin: auto 0;
+      width: 50%;
+    }
+    h1 {
+      font-weight: 100;
+      font-size: 1em;
+    }
+  }
+
+  .sidebar-horizontal {
+    content: "";
+    position: absolute;
+    right: 15px;
+    width: calc(100% - 30px);
+    height: 1px;
+    background-color: hsla(0, 0%, 100%, 0.3);
+  }
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
+}

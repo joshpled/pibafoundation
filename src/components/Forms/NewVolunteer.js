@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 function NewVolunteer() {
   const [volunteer, setVolunteer] = useState({
-    name: "",
+    fullname: "",
     age: "",
     email: "",
     phone: "",
@@ -25,8 +25,8 @@ function NewVolunteer() {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label>Name:</label>
-        <input type="text" name="name" value={volunteer.name} onChange={handleChange} required="required" placeholder="First and Last Name" />
+        <label>Full Name:</label>
+        <input type="text" name="fullname" value={volunteer.fullname} onChange={handleChange} required="required" placeholder="First and Last Name" />
         <br></br>
         <label>Age:</label>
         <input type="number" name="age" value={volunteer.age} onChange={handleChange} required="required" />

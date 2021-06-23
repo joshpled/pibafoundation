@@ -1,0 +1,27 @@
+@import "./variables";
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+.wrapper {
+  background-color: gray;
+  height: 100vh;
+}
+.main-content {
+  display: flex;
+  flex-direction: column;
+  background-color: hsl(240, 7%, 97%);
+  width: $sidebar-margin;
+  @media screen and (max-width: 900px) {
+    width: 100vw;
+  }
+  height: 100vh;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  .main-navbar {
+    background-color: hsl(0, 0%, 90%);
+    height: 4em;
+  }
+}

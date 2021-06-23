@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import routes from "routes";
-import { AdminNavigation } from "components";
+import { Sidebar } from "components";
 
 function Admin() {
   const getRoutes = (routes) => {
@@ -14,11 +14,12 @@ function Admin() {
     });
   };
   return (
-    <div style={{ display: "flex" }}>
-      <div style={{ height: "100vh", marginRight: "1em" }}>
-        <AdminNavigation />
+    <div className="wrapper">
+      <div className="sidebar-container">
+        <Sidebar />
       </div>
-      <div style={{ margin: "1em" }}>
+      <div className="main-content">
+        <div className="main-navbar">NAVBAR</div>
         <Switch>{getRoutes(routes)}</Switch>
       </div>
     </div>
