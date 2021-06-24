@@ -1,4 +1,4 @@
-@import "./variables";
+@import "./variables-two";
 
 .sidebar {
   background: linear-gradient(0deg, hsla(0, 0%, 0%, 0.4), hsla(0, 0%, 0%, 0.8)), url("https://i.imgur.com/OCzFYPZ.jpeg") no-repeat;
@@ -40,4 +40,24 @@
   @media screen and (max-width: 600px) {
     display: none;
   }
+}
+
+.sidebar-navlink {
+  text-decoration: none;
+  color: white;
+  list-style-type: none;
+  margin: 20px;
+  padding: 10px 0 10px 30px;
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  svg {
+    margin-right: 10px;
+  }
+}
+.sidebar-navlink:hover {
+  background-color: hsla(0, 0%, 0%, 0.4);
+
+  cursor: pointer;
 }

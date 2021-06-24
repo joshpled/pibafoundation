@@ -2,6 +2,9 @@ import React from "react";
 import { Redirect, Route } from "react-router-dom";
 import Admin from "layouts/Admin.js";
 import Auth from "layouts/Auth.js";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faHome, faDog, faUserClock, faCalendarPlus, faHandsHelping } from "@fortawesome/free-solid-svg-icons";
+library.add(faHome, faDog, faUserClock, faCalendarPlus, faHandsHelping);
 
 function App() {
   let route;

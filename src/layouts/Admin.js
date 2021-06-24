@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import routes from "routes";
 import { Sidebar } from "components";
+import { AdminNavigation } from "components";
 
 function Admin() {
   const getRoutes = (routes) => {
@@ -19,7 +20,9 @@ function Admin() {
         <Sidebar />
       </div>
       <div className="main-content">
-        <div className="main-navbar">NAVBAR</div>
+        <div className="main-navbar">
+          <AdminNavigation />
+        </div>
         <Switch>{getRoutes(routes)}</Switch>
       </div>
     </div>
