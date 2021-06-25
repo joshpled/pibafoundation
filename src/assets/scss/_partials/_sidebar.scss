@@ -29,6 +29,16 @@
     }
   }
 
+  .sidebar-footer {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+    font-weight: 300;
+    color: hsla(0, 0%, 100%, 0.3);
+  }
+
   .sidebar-horizontal {
     content: "";
     position: absolute;
@@ -37,7 +47,7 @@
     height: 1px;
     background-color: hsla(0, 0%, 100%, 0.3);
   }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 900px) {
     display: none;
   }
 }
@@ -46,8 +56,10 @@
   text-decoration: none;
   color: white;
   list-style-type: none;
-  margin: 20px;
-  padding: 10px 0 10px 30px;
+  margin: 20px 10px;
+  padding: 20px 0 20px 30px;
+  border-radius: 4px;
+  font-size: large;
   a {
     text-decoration: none;
     color: white;
@@ -56,8 +68,10 @@
     margin-right: 10px;
   }
 }
+.active {
+  background-color: hsla(0, 0%, 53%, 0.4);
+}
 .sidebar-navlink:hover {
-  background-color: hsla(0, 0%, 0%, 0.4);
-
+  background-color: hsla(0, 0%, 21%, 0.4);
   cursor: pointer;
 }

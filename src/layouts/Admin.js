@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import routes from "routes";
 import { Sidebar } from "components";
 import { AdminNavigation } from "components";
 
 function Admin() {
+  const [openMenu, setOpenMenu] = useState(false);
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
@@ -14,14 +15,17 @@ function Admin() {
       }
     });
   };
+  const handleShowMenu = () => {
+    setOpenMenu((prevState) => !prevState);
+  };
   return (
     <div className="wrapper">
       <div className="sidebar-container">
-        <Sidebar />
+        <Sidebar showMenu={openMenu} />
       </div>
       <div className="main-content">
         <div className="main-navbar">
-          <AdminNavigation />
+          <AdminNavigation handleShow={handleShowMenu} />
         </div>
         <Switch>{getRoutes(routes)}</Switch>
       </div>

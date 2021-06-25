@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import routes from "routes";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function AdminNavigation() {
+function AdminNavigation({ handleShow }) {
+  const [gear, setgear] = useState(false);
   let location = useLocation();
   const getBrandText = () => {
     for (let i = 0; i < routes.length; i++) {
@@ -13,12 +15,20 @@ function AdminNavigation() {
     return "PIBA Foundation";
   };
 
+  const handleMouseOver = () => {
+    setgear((prevState) => !prevState);
+  };
+
   return (
     <div className="admin-navbar-container">
-      <div className="admin-navbar-brand">{getBrandText()}</div>
-      <div>Admin Navbar</div>
-      <div>Notifications</div>
-      <div>Settings</div>
+      <div className="admin-navbar-brand">
+        <FontAwesomeIcon icon="bars" size="lg" className="admin-navbar-burgermenu" onClick={handleShow} /> {getBrandText()}
+      </div>
+      <div className="admin-navbar-links">
+        <div className={`admin-navbar-settings ${gear ? "rotate-center" : ""}`} onMouseOver={handleMouseOver}>
+          <FontAwesomeIcon icon="cog" size="lg" />
+        </div>
+      </div>
     </div>
   );
 }

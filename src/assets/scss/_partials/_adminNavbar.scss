@@ -10,5 +10,21 @@
   .admin-navbar-brand {
     position: absolute;
     left: 0;
+    font-weight: 400;
+  }
+  .admin-navbar-links {
+    position: absolute;
+    right: 0;
+    font-weight: 400;
+  }
+  .admin-navbar-settings {
+    cursor: pointer;
+  }
+  .admin-navbar-burgermenu {
+    margin-right: 20px;
+    cursor: pointer;
+    @media screen and (min-width: 900px) {
+      display: none;
+    }
   }
 }

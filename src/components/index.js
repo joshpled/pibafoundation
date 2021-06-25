@@ -10,4 +10,8 @@ import NewVolunteer from "./Forms/NewVolunteer";
 
 import Sidebar from "./Sidebar";
 
-export { AdminNavigation, AuthNavigation, DogTable, NewAdopter, NewDog, NewEmployee, NewVolunteer, Sidebar };
+import DashboardCard from "./DashboardCard";
+import PersonCard from "./PersonCard";
+import CalendarComponent from "./CalendarComponent";
+
+export { AdminNavigation, AuthNavigation, DogTable, NewAdopter, NewDog, NewEmployee, NewVolunteer, Sidebar, DashboardCard, PersonCard, CalendarComponent };

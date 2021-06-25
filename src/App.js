@@ -3,8 +3,8 @@ import { Redirect, Route } from "react-router-dom";
 import Admin from "layouts/Admin.js";
 import Auth from "layouts/Auth.js";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faHome, faDog, faUserClock, faCalendarPlus, faHandsHelping } from "@fortawesome/free-solid-svg-icons";
-library.add(faHome, faDog, faUserClock, faCalendarPlus, faHandsHelping);
+import { faHome, faDog, faUserClock, faCalendarPlus, faHandsHelping, faCog, faBars, faWrench, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+library.add(faHome, faDog, faUserClock, faCalendarPlus, faHandsHelping, faCog, faBars, faWrench, faPlusCircle);
 
 function App() {
   let route;
