@@ -2,7 +2,8 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function PersonCard() {
+function PersonCard({ userData }) {
+  const { name, position, email, phone, permissions } = userData;
   return (
     <>
       <Card style={{ width: "14em", margin: "10px", alignItems: "center", paddingTop: "10px" }}>
@@ -15,12 +16,15 @@ function PersonCard() {
           <Card.Text as="div">
             <div style={{ display: "flex", alignItems: "center" }}>
               <div style={{ marginRight: "30px", color: "gray" }}>
-                <FontAwesomeIcon icon="wrench" size="2x" />
+                <FontAwesomeIcon icon="user-alt" size="2x" />
               </div>
-              <div style={{ width: "100%", textAlign: "right" }}>Current Updates</div>
+              <div style={{ width: "100%", textAlign: "right" }}>{name}</div>
             </div>
             <hr />
-            <div style={{ textAlign: "center" }}>Most recent updates</div>
+            <div className="user-details">{position}</div>
+            <div className="user-details">{email}</div>
+            <div className="user-details">{phone}</div>
+            <div className="user-details">{permissions}</div>
           </Card.Text>
         </Card.Body>
       </Card>

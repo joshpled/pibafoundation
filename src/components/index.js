@@ -13,5 +13,19 @@ import Sidebar from "./Sidebar";
 import DashboardCard from "./DashboardCard";
 import PersonCard from "./PersonCard";
 import CalendarComponent from "./CalendarComponent";
+import ModalComponent from "./ModalComponent";
 
-export { AdminNavigation, AuthNavigation, DogTable, NewAdopter, NewDog, NewEmployee, NewVolunteer, Sidebar, DashboardCard, PersonCard, CalendarComponent };
+export {
+  AdminNavigation,
+  AuthNavigation,
+  DogTable,
+  NewAdopter,
+  NewDog,
+  NewEmployee,
+  NewVolunteer,
+  Sidebar,
+  DashboardCard,
+  PersonCard,
+  CalendarComponent,
+  ModalComponent,
+};

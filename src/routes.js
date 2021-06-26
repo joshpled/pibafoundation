@@ -9,20 +9,6 @@ var routes = [
     component: Dashboard,
   },
   {
-    path: "/employees",
-    layout: "/admin",
-    name: "Employees",
-    icon: "user-clock",
-    component: Employees,
-  },
-  {
-    path: "/events",
-    layout: "/admin",
-    name: "Events",
-    icon: "calendar-plus",
-    component: Events,
-  },
-  {
     path: "/dogs",
     layout: "/admin",
     name: "Dogs",
@@ -30,11 +16,25 @@ var routes = [
     component: Dogs,
   },
   {
+    path: "/employees",
+    layout: "/admin",
+    name: "Employees",
+    icon: "user-clock",
+    component: Employees,
+  },
+  {
     path: "/volunteers",
     layout: "/admin",
     name: "Volunteers",
     icon: "hands-helping",
     component: Volunteers,
+  },
+  {
+    path: "/events",
+    layout: "/admin",
+    name: "Events",
+    icon: "calendar-plus",
+    component: Events,
   },
   {
     path: "/login",

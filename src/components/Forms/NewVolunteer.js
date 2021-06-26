@@ -1,62 +1,80 @@
-import React, { useState } from "react";
+import React from "react";
+import { Form, Button, Col } from "react-bootstrap";
 
 function NewVolunteer() {
-  const [volunteer, setVolunteer] = useState({
-    fullname: "",
-    age: "",
-    email: "",
-    phone: "",
-    address: "",
-    addressTwo: "",
-    zipcode: "",
-    city: "",
-    state: "",
-    sign: "",
-  });
+  // const [volunteer, setVolunteer] = useState({
+  //   fullname: "",
+  //   age: "",
+  //   email: "",
+  //   phone: "",
+  //   address: "",
+  //   addressTwo: "",
+  //   zipcode: "",
+  //   city: "",
+  //   state: "",
+  //   sign: "",
+  // });
+  // const handleChange = (e) => {
+  //   setVolunteer((prevValues) => {
+  //     return { ...prevValues, [e.target.name]: e.target.value };
+  //   });
+  // };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(volunteer);
-  };
-  const handleChange = (e) => {
-    setVolunteer((prevValues) => {
-      return { ...prevValues, [e.target.name]: e.target.value };
-    });
   };
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label>Full Name:</label>
-        <input type="text" name="fullname" value={volunteer.fullname} onChange={handleChange} required="required" placeholder="First and Last Name" />
-        <br></br>
-        <label>Age:</label>
-        <input type="number" name="age" value={volunteer.age} onChange={handleChange} required="required" />
-        <br></br>
-        <label>E-mail:</label>
-        <input type="email" name="email" value={volunteer.email} onChange={handleChange} required="required" placeholder="example@email.com" />
-        <br></br>
-        <label>Phone:</label>
-        <input type="tel" name="phone" value={volunteer.phone} onChange={handleChange} required="required" />
-        <br></br>
-        <label>Address:</label>
-        <input type="text" name="address" value={volunteer.address} onChange={handleChange} required="required" />
-        <br></br>
-        <label>Address(line 2):</label>
-        <input type="text" name="addressTwo" value={volunteer.addressTwo} onChange={handleChange} />
-        <br></br>
-        <label>Zipcode:</label>
-        <input type="number" name="zipcode" value={volunteer.zipcode} onChange={handleChange} required="required" />
-        <br></br>
-        <label>City:</label>
-        <input type="text" name="city" value={volunteer.city} onChange={handleChange} required="required" />
-        <br></br>
-        <label>State:</label>
-        <input type="text" name="state" value={volunteer.state} onChange={handleChange} required="required" />
-        <br></br>
-        <label>Sign:</label>
-        <input type="text" name="sign" value={volunteer.sign} onChange={handleChange} required="required" />
-        <br></br>
-        <button>Submit</button>
-      </form>
+      <Form onSubmit={handleSubmit}>
+        <Form.Row>
+          <Form.Group as={Col} controlId="formGridEmail">
+            <Form.Label>Email</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" />
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="formGridPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" placeholder="Password" />
+          </Form.Group>
+        </Form.Row>
+
+        <Form.Group controlId="formGridAddress1">
+          <Form.Label>Address</Form.Label>
+          <Form.Control placeholder="1234 Main St" />
+        </Form.Group>
+
+        <Form.Group controlId="formGridAddress2">
+          <Form.Label>Address 2</Form.Label>
+          <Form.Control placeholder="Apartment, studio, or floor" />
+        </Form.Group>
+
+        <Form.Row>
+          <Form.Group as={Col} controlId="formGridCity">
+            <Form.Label>City</Form.Label>
+            <Form.Control />
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="formGridState">
+            <Form.Label>State</Form.Label>
+            <Form.Control as="select" defaultValue="Choose...">
+              <option>Choose...</option>
+              <option>...</option>
+            </Form.Control>
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="formGridZip">
+            <Form.Label>Zip</Form.Label>
+            <Form.Control />
+          </Form.Group>
+        </Form.Row>
+
+        <Form.Group id="formGridCheckbox">
+          <Form.Check type="checkbox" label="Check me out" />
+        </Form.Group>
+
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
     </div>
   );
 }

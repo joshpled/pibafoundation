@@ -1,9 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { DogTable, NewDog } from "components";
-import axios from "axios";
+// import React, { useState, useEffect } from "react";
+// import { DogTable, NewDog } from "components";
+// import axios from "axios";
 
 function Dogs() {
-  const [dogs, setDogs] = useState([]);
+  return <div>Dogs Page</div>;
+}
+
+export default Dogs;
+
+/*
+ const [dogs, setDogs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showCards, setshowCards] = useState(false);
   const [showNewDogForm, setshowNewDogForm] = useState(false);
@@ -97,22 +103,4 @@ function Dogs() {
       setLoading(true);
     };
   }, []);
-
-  return (
-    <div>
-      Dogs Page
-      {loading && <div>LOADING!!</div>}
-      <div>
-        <p>Cards</p>
-        <input type="checkbox" onChange={handleCheck} defaultChecked={showCards} />
-        <button onClick={handleShowForm}>{showNewDogForm ? "Close Form" : "New Dog"}</button>
-      </div>
-      <div style={{ display: showNewDogForm ? "" : "none", margin: "10px" }}>
-        <NewDog />
-      </div>
-      <div style={{ display: showCards ? "none" : "" }}>{dogs.length > 0 && <DogTable data={dogs.length > 0 && dogs} />}</div>
-    </div>
-  );
-}
-
-export default Dogs;
+*/
