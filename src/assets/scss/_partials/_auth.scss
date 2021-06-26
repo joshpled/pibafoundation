@@ -1,0 +1,89 @@
+.auth-wrapper {
+  height: 100vh;
+  background: linear-gradient(0deg, hsla(0, 0%, 0%, 0.5), hsla(0, 0%, 0%, 0.5)), url("https://i.imgur.com/P2StEIe.jpg") no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.auth-footer {
+  color: rgb(156, 156, 156);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 20px;
+  width: 100%;
+  font-weight: 300;
+  a {
+    text-decoration: none;
+    color: rgb(156, 156, 156);
+  }
+  #auth-footer-left {
+    float: left;
+  }
+  #auth-footer-right {
+    float: right;
+  }
+}
+
+.auth-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .card {
+    position: relative;
+    border-radius: 20px;
+    .login-button {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}
+
+.auth-navigation {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+  padding: 40px;
+}
+
+.bounce-in-top {
+  animation: bounce-in-top 1s both;
+}
+
+@keyframes bounce-in-top {
+  0% {
+    transform: translateY(-500px);
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+  38% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+    opacity: 1;
+  }
+  55% {
+    transform: translateY(-65px);
+    animation-timing-function: ease-in;
+  }
+  72% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+  81% {
+    transform: translateY(-28px);
+    animation-timing-function: ease-in;
+  }
+  90% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+  95% {
+    transform: translateY(-8px);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+}

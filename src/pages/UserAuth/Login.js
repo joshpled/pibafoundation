@@ -1,18 +1,44 @@
 import React from "react";
+import { Card, Form, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function Login() {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Login Submitted");
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("Login Submitted");
+  // };
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
-      <label>Username:</label>
-      <input type="text" />
-      <label>Password:</label>
-      <input type="password" />
-      <button type="submit">Submit</button>
-    </form>
+    <>
+      <Card style={{ alignItems: "center" }} className="bounce-in-top">
+        <Card.Body>
+          <h3 style={{ textAlign: "center", fontWeight: "300", marginBottom: "30px" }}>Login</h3>
+          <Form>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Text className="text-muted">We'll never share your email with anyone else.</Form.Text>
+            </Form.Group>
+
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" placeholder="Password" />
+            </Form.Group>
+            <Form.Group controlId="formBasicCheckbox">
+              <Form.Check type="checkbox" label="Remember Me" />
+            </Form.Group>
+            <div className="login-button">
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
+            </div>
+            <hr></hr>
+            <Link to="/auth/register" style={{ float: "right" }}>
+              Don't have an account?
+            </Link>
+          </Form>
+        </Card.Body>
+      </Card>
+    </>
   );
 }
 

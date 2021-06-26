@@ -15,12 +15,16 @@ function Auth() {
     });
   };
   return (
-    <div style={{ display: "flex" }}>
-      <div style={{ height: "100vh", marginRight: "1em" }}>
-        <AuthNavigation />
-      </div>
-      <div style={{ margin: "1em" }}>
+    <div className="auth-wrapper">
+      <AuthNavigation />
+      <div className="auth-body">
         <Switch>{getRoutes(routes)}</Switch>
+      </div>
+      <div className="auth-footer">
+        <div id="auth-footer-left">
+          Made with &#9829; by <a href="https://www.joshuapleduc.com">Joshua Perez Leduc</a>
+        </div>
+        <div id="auth-footer-right">&#169; Copyright 2021</div>
       </div>
     </div>
   );

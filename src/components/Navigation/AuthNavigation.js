@@ -1,22 +1,13 @@
 import React from "react";
-import routes from "routes";
-import { Link } from "react-router-dom";
+import { Image } from "react-bootstrap";
+import favicon96 from "../../assets/images/favicon-96.png";
 
 function AuthNavigation() {
-  const createRoutes = (routes) => {
-    return routes.map(({ name, path, layout }, key) => {
-      if (layout === "/auth") {
-        return (
-          <li key={key} style={{ marginBottom: "1em" }}>
-            <Link to={layout + path}>{name}</Link>
-          </li>
-        );
-      } else {
-        return null;
-      }
-    });
-  };
-  return <ul>{createRoutes(routes)}</ul>;
+  return (
+    <div className="auth-navigation">
+      <Image src={favicon96} />
+    </div>
+  );
 }
 
 export default AuthNavigation;
