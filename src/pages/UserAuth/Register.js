@@ -8,7 +8,7 @@ function Register() {
   //   console.log("Register Submitted");
   // };
   return (
-    <>
+    <div className="register-box-wrapper">
       <Card style={{ alignItems: "center" }} className="bounce-in-top">
         <Card.Body>
           <h3 style={{ textAlign: "center", fontWeight: "300", marginBottom: "30px" }}>Register</h3>
@@ -44,7 +44,7 @@ function Register() {
           </Form>
         </Card.Body>
       </Card>
-    </>
+    </div>
   );
 }
 

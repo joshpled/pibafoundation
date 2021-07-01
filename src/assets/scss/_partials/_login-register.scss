@@ -1,0 +1,12 @@
+.login-box-wrapper,
+.register-box-wrapper {
+  .card {
+    background-color: hsla(0, 0, 0, 0.6);
+    color: hsl(0, 0%, 78%);
+    border-radius: 0.3em;
+    z-index: 4;
+  }
+}
+.register-box-wrapper {
+  max-height: 50%;
+}

@@ -8,7 +8,7 @@ function Login() {
   //   console.log("Login Submitted");
   // };
   return (
-    <>
+    <div className="login-box-wrapper">
       <Card style={{ alignItems: "center" }} className="bounce-in-top">
         <Card.Body>
           <h3 style={{ textAlign: "center", fontWeight: "300", marginBottom: "30px" }}>Login</h3>
@@ -38,7 +38,7 @@ function Login() {
           </Form>
         </Card.Body>
       </Card>
-    </>
+    </div>
   );
 }
 

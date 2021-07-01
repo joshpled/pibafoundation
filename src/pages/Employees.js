@@ -1,14 +1,16 @@
-import React from "react";
-import { PersonCard } from "components";
+import React, { useState } from "react";
+import { PersonCard, ModalComponent } from "components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "react-bootstrap";
 
 function Employees() {
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
+  const [show, setShow] = useState(false);
   return (
     <div>
       <div style={{ height: "fit-content" }}>
-        <Button style={{ margin: "10px" }}>Add Employee</Button>
-        <div className="employee-add-new">
+        <div className="employee-add-new" onClick={handleShow}>
           <FontAwesomeIcon icon="plus-circle" size="2x" />
         </div>
       </div>
@@ -21,6 +23,7 @@ function Employees() {
           permissions: "Admin",
         }}
       />
+      <ModalComponent show={show} handleShow={handleShow} handleClose={handleClose} />
     </div>
   );
 }

@@ -20,7 +20,7 @@ library.add(faHome, faDog, faUserClock, faCalendarPlus, faHandsHelping, faCog, f
 
 function App() {
   let route;
-  if (false) {
+  if (true) {
     route = <Redirect from="/" to="/admin/dashboard" />;
   } else {
     route = <Redirect from="/" to="/auth/login" />;
