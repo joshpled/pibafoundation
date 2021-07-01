@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { PersonCard, ModalComponent } from "components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button } from "react-bootstrap";
 
 function Employees() {
   const handleShow = () => setShow(true);

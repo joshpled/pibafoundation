@@ -1,5 +1,11 @@
 .login-box-wrapper,
 .register-box-wrapper {
+  input {
+    min-width: 250px;
+  }
+  #formBasicCheckbox {
+    min-width: fit-content;
+  }
   .card {
     background-color: hsla(0, 0, 0, 0.6);
     color: hsl(0, 0%, 78%);
@@ -9,4 +15,15 @@
 }
 .register-box-wrapper {
   max-height: 50%;
+}
+
+.reveal-password {
+  position: relative;
+  float: right;
+  transform: translateY(-30px) translateX(-10px);
+  color: gray;
+  svg:hover {
+    color: rgb(63, 63, 63);
+    cursor: pointer;
+  }
 }

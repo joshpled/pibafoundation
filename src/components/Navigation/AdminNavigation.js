@@ -1,10 +1,14 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import routes from "routes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { useAuth } from "../../context/AuthContext";
+import { Alert } from "react-bootstrap";
 function AdminNavigation({ handleShow }) {
   const [gear, setgear] = useState(false);
+  const [error, setError] = useState("");
+  const { currentUser, logout } = useAuth();
+  const history = useHistory();
   let location = useLocation();
   const getBrandText = () => {
     for (let i = 0; i < routes.length; i++) {
@@ -14,6 +18,16 @@ function AdminNavigation({ handleShow }) {
     }
     return "PIBA Foundation";
   };
+  async function handleLogout() {
+    setError("");
+
+    try {
+      await logout();
+      history.push("/auth/login");
+    } catch {
+      setError("Failed to log out");
+    }
+  }
 
   const handleMouseOver = () => {
     setgear((prevState) => !prevState);
@@ -24,8 +38,11 @@ function AdminNavigation({ handleShow }) {
       <div className="admin-navbar-brand">
         <FontAwesomeIcon icon="bars" size="lg" className="admin-navbar-burgermenu" onClick={handleShow} /> {getBrandText()}
       </div>
+
+      {error && <Alert variant="danger">{error}</Alert>}
+      {currentUser && currentUser.email}
       <div className="admin-navbar-links">
-        <div className={`admin-navbar-settings ${gear ? "rotate-center" : ""}`} onMouseOver={handleMouseOver}>
+        <div className={`admin-navbar-settings ${gear ? "rotate-center" : ""}`} onMouseOver={handleMouseOver} onClick={handleLogout}>
           <FontAwesomeIcon icon="cog" size="lg" />
         </div>
       </div>
