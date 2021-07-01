@@ -3,7 +3,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import routes from "routes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAuth } from "../../context/AuthContext";
-import { Alert } from "react-bootstrap";
+import { Alert, Dropdown } from "react-bootstrap";
 function AdminNavigation({ handleShow }) {
   const [gear, setgear] = useState(false);
   const [error, setError] = useState("");
@@ -38,16 +38,31 @@ function AdminNavigation({ handleShow }) {
       <div className="admin-navbar-brand">
         <FontAwesomeIcon icon="bars" size="lg" className="admin-navbar-burgermenu" onClick={handleShow} /> {getBrandText()}
       </div>
-
       {error && <Alert variant="danger">{error}</Alert>}
       {currentUser && currentUser.email}
-      <div className="admin-navbar-links">
-        <div className={`admin-navbar-settings ${gear ? "rotate-center" : ""}`} onMouseOver={handleMouseOver} onClick={handleLogout}>
-          <FontAwesomeIcon icon="cog" size="lg" />
-        </div>
-      </div>
+      <Dropdown as="div" className="admin-navbar-links">
+        <Dropdown.Toggle variant="default">
+          <div className={`admin-navbar-settings ${gear ? "rotate-center" : ""}`} onMouseOver={handleMouseOver}>
+            <FontAwesomeIcon icon="cog" size="lg" />
+            <div></div>
+          </div>
+        </Dropdown.Toggle>
+        <Dropdown.Menu alignRight aria-labelledby="navbarDropdownMenuLink">
+          <Dropdown.Item onClick={() => history.push("/admin/dogs")}>
+            <i className="nc-icon nc-settings-90"></i>
+            Settings
+          </Dropdown.Item>
+          <div className="divider"></div>
+          <Dropdown.Item className="text-danger" onClick={handleLogout}>
+            <i className="nc-icon nc-button-power"></i>
+            Log out
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
     </div>
   );
 }
 
 export default AdminNavigation;
+
+//onClick={handleLogout}
