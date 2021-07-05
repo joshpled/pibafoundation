@@ -3,7 +3,6 @@ import { Card, Form, Button, Alert } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ForgotPassword } from "pages";
 
 export default function Login() {
   const emailRef = useRef();
