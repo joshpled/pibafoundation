@@ -5,4 +5,7 @@ import Dogs from "./Dogs";
 import Events from "./Events";
 import Login from "./UserAuth/Login";
 import Register from "./UserAuth/Register";
-export { Dashboard, Employees, Volunteers, Dogs, Events, Login, Register };
+import Workflows from "./Workflows";
+import UserSettings from "./UserSettings";
+import ForgotPassword from "./UserAuth/ForgotPassword";
+export { Dashboard, Employees, Volunteers, Dogs, Events, Login, Register, Workflows, UserSettings, ForgotPassword };

@@ -1,4 +1,4 @@
-import { Dashboard, Employees, Events, Dogs, Volunteers, Login, Register } from "pages";
+import { Dashboard, Employees, Events, Dogs, Volunteers, Login, Register, Workflows, UserSettings, ForgotPassword } from "pages";
 
 var routes = [
   {
@@ -6,6 +6,7 @@ var routes = [
     layout: "/admin",
     name: "Dashboard",
     icon: "home",
+    show: true,
     component: Dashboard,
   },
   {
@@ -13,6 +14,7 @@ var routes = [
     layout: "/admin",
     name: "Dogs",
     icon: "dog",
+    show: true,
     component: Dogs,
   },
   {
@@ -20,6 +22,7 @@ var routes = [
     layout: "/admin",
     name: "Employees",
     icon: "user-clock",
+    show: true,
     component: Employees,
   },
   {
@@ -27,6 +30,7 @@ var routes = [
     layout: "/admin",
     name: "Volunteers",
     icon: "hands-helping",
+    show: true,
     component: Volunteers,
   },
   {
@@ -34,13 +38,31 @@ var routes = [
     layout: "/admin",
     name: "Events",
     icon: "calendar-plus",
+    show: true,
     component: Events,
+  },
+  {
+    path: "/workflows",
+    layout: "/admin",
+    name: "Workflows",
+    icon: "bezier-curve",
+    show: true,
+    component: Workflows,
+  },
+  {
+    path: "/user-settings",
+    layout: "/admin",
+    name: "User Settings",
+    icon: "bezier-curve",
+    show: false,
+    component: UserSettings,
   },
   {
     path: "/login",
     layout: "/auth",
     name: "Login",
     icon: "home",
+    show: true,
     component: Login,
   },
   {
@@ -48,7 +70,16 @@ var routes = [
     layout: "/auth",
     name: "Register",
     icon: "home",
+    show: true,
     component: Register,
+  },
+  {
+    path: "/forgot-password",
+    layout: "/auth",
+    name: "Forgot Password",
+    icon: "home",
+    show: true,
+    component: ForgotPassword,
   },
 ];
 

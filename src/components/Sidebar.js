@@ -9,8 +9,8 @@ let year = new Date();
 function Sidebar({ showMenu }) {
   let location = useLocation();
   const createRoutes = (routes) => {
-    return routes.map(({ name, path, layout, icon }, key) => {
-      if (layout === "/admin") {
+    return routes.map(({ name, path, layout, icon, show }, key) => {
+      if (layout === "/admin" && show) {
         return (
           <Link key={key} to={layout + path} style={{ textDecoration: "none" }}>
             <li className={`sidebar-navlink ${activeRoute(layout + path) ? "active" : ""}`}>

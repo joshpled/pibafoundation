@@ -3,13 +3,13 @@ import { Route, Switch } from "react-router-dom";
 import routes from "routes";
 import { Sidebar } from "components";
 import { AdminNavigation } from "components";
-
+import generateKey from "helper/generateKey";
 function Admin() {
   const [openMenu, setOpenMenu] = useState(false);
   const getRoutes = (routes) => {
-    return routes.map((prop, key) => {
+    return routes.map((prop) => {
       if (prop.layout === "/admin") {
-        return <Route path={prop.layout + prop.path} key={key} render={(props) => <prop.component {...props} />} />;
+        return <Route path={prop.layout + prop.path} key={generateKey(prop.component)} render={(props) => <prop.component {...props} />} />;
       } else {
         return null;
       }

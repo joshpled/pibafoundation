@@ -14,6 +14,11 @@ import DashboardCard from "./DashboardCard";
 import PersonCard from "./PersonCard";
 import CalendarComponent from "./CalendarComponent";
 import ModalComponent from "./ModalComponent";
+import WorkflowStep from "./Workflow/WorkflowStep";
+import WorkflowSetup from "./Workflow/WorkflowSetup";
+import ShelterLuvDogs from "./ShelterLuvDogs";
+import DogCard from "./Dog/DogCard";
+import UserEmailPassword from "./UserEmailPassword";
 
 export {
   AdminNavigation,
@@ -28,4 +33,9 @@ export {
   PersonCard,
   CalendarComponent,
   ModalComponent,
+  WorkflowStep,
+  WorkflowSetup,
+  ShelterLuvDogs,
+  DogCard,
+  UserEmailPassword,
 };

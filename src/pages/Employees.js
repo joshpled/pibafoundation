@@ -22,7 +22,7 @@ function Employees() {
           permissions: "Admin",
         }}
       />
-      <ModalComponent show={show} handleShow={handleShow} handleClose={handleClose} />
+      <ModalComponent show={show} handleShow={handleShow} handleClose={handleClose} form="employee" />
     </div>
   );
 }

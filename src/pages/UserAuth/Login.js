@@ -3,6 +3,7 @@ import { Card, Form, Button, Alert } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ForgotPassword } from "pages";
 
 export default function Login() {
   const emailRef = useRef();
@@ -59,6 +60,10 @@ export default function Login() {
             <hr></hr>
             <Link to="/auth/register" style={{ float: "right" }}>
               Don't have an account?
+            </Link>
+            <br></br>
+            <Link to="/auth/forgot-password" style={{ float: "right" }}>
+              Forgot Password?
             </Link>
           </Form>
         </Card.Body>

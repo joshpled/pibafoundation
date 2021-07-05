@@ -48,13 +48,13 @@ function AdminNavigation({ handleShow }) {
           </div>
         </Dropdown.Toggle>
         <Dropdown.Menu alignRight aria-labelledby="navbarDropdownMenuLink">
-          <Dropdown.Item onClick={() => history.push("/admin/dogs")}>
-            <i className="nc-icon nc-settings-90"></i>
+          <Dropdown.Item onClick={() => history.push("/admin/user-settings")}>
+            <FontAwesomeIcon icon="wrench" size="sm" style={{ marginRight: "10px" }} />
             Settings
           </Dropdown.Item>
           <div className="divider"></div>
           <Dropdown.Item className="text-danger" onClick={handleLogout}>
-            <i className="nc-icon nc-button-power"></i>
+            <FontAwesomeIcon icon="power-off" size="sm" style={{ marginRight: "10px" }} />
             Log out
           </Dropdown.Item>
         </Dropdown.Menu>

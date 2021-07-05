@@ -11,7 +11,7 @@ function Volunteers() {
       <Button variant="primary" onClick={handleShow}>
         Launch demo modal
       </Button>
-      <ModalComponent show={show} handleShow={handleShow} handleClose={handleClose} />
+      <ModalComponent show={show} handleShow={handleShow} handleClose={handleClose} form="volunteer" />
     </Container>
   );
 }
