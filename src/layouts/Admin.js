@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Route, Switch, useLocation } from "react-router-dom";
 import routes from "routes";
 import { Sidebar } from "components";
 import { AdminNavigation } from "components";
 import generateKey from "helper/generateKey";
 function Admin() {
+  let location = useLocation();
   const [openMenu, setOpenMenu] = useState(false);
   const getRoutes = (routes) => {
     return routes.map((prop) => {
@@ -18,6 +19,10 @@ function Admin() {
   const handleShowMenu = () => {
     setOpenMenu((prevState) => !prevState);
   };
+
+  useEffect(() => {
+    localStorage.setItem("path", location.pathname);
+  });
   return (
     <div className="wrapper">
       <div className="sidebar-container">

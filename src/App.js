@@ -11,7 +11,11 @@ function App() {
   let route;
   const { currentUser } = useAuth();
   if (currentUser) {
-    route = <Redirect from="/" to="/admin/dashboard" />;
+    if (localStorage.getItem("path")) {
+      route = <Redirect from="/" to={localStorage.getItem("path")} />;
+    } else {
+      route = <Redirect from="/" to="/admin/dashboard" />;
+    }
   } else {
     route = <Redirect from="/" to="/auth/login" />;
   }

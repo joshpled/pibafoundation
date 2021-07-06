@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ModalComponent } from "components";
-import { Button, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Volunteers() {
   const handleShow = () => setShow(true);
@@ -8,9 +9,11 @@ function Volunteers() {
   const [show, setShow] = useState(false);
   return (
     <Container className="volunteer-wrapper">
-      <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button>
+      <div style={{ height: "fit-content" }}>
+        <div className="employee-add-new" onClick={handleShow}>
+          <FontAwesomeIcon icon="plus-circle" size="2x" />
+        </div>
+      </div>
       <ModalComponent show={show} handleShow={handleShow} handleClose={handleClose} form="volunteer" />
     </Container>
   );

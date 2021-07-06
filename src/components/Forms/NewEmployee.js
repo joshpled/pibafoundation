@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { Form, Button, Col } from "react-bootstrap";
+import fetchGraph from "helper/fetchGraph";
 
 function NewEmployee() {
+  const [validated, setValidated] = useState(false);
   const [employee, setEmployee] = useState({
-    fullname: "",
+    firstName: "",
+    lastName: "",
     age: "",
     email: "",
     phone: "",
@@ -11,52 +15,80 @@ function NewEmployee() {
     zipcode: "",
     city: "",
     state: "",
-    sign: "",
+    sign: false,
   });
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(employee);
-  };
   const handleChange = (e) => {
     setEmployee((prevValues) => {
       return { ...prevValues, [e.target.name]: e.target.value };
     });
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.stopPropagation();
+    }
+    setValidated(true);
+  };
+
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label>Full Name:</label>
-        <input type="text" name="fullname" value={employee.fullname} onChange={handleChange} required="required" placeholder="First and Last Name" />
-        <br></br>
-        <label>Age:</label>
-        <input type="number" name="age" value={employee.age} onChange={handleChange} required="required" />
-        <br></br>
-        <label>E-mail:</label>
-        <input type="email" name="email" value={employee.email} onChange={handleChange} required="required" placeholder="example@email.com" />
-        <br></br>
-        <label>Phone:</label>
-        <input type="tel" name="phone" value={employee.phone} onChange={handleChange} required="required" />
-        <br></br>
-        <label>Address:</label>
-        <input type="text" name="address" value={employee.address} onChange={handleChange} required="required" />
-        <br></br>
-        <label>Address(line 2):</label>
-        <input type="text" name="addressTwo" value={employee.addressTwo} onChange={handleChange} />
-        <br></br>
-        <label>Zipcode:</label>
-        <input type="number" name="zipcode" value={employee.zipcode} onChange={handleChange} required="required" />
-        <br></br>
-        <label>City:</label>
-        <input type="text" name="city" value={employee.city} onChange={handleChange} required="required" />
-        <br></br>
-        <label>State:</label>
-        <input type="text" name="state" value={employee.state} onChange={handleChange} required="required" />
-        <br></br>
-        <label>Sign:</label>
-        <input type="text" name="sign" value={employee.sign} onChange={handleChange} required="required" />
-        <br></br>
-        <button>Submit</button>
-      </form>
+      <Form noValidate validated={validated} onSubmit={handleSubmit}>
+        <h3>New Employee</h3>
+        <hr></hr>
+        <Form.Row>
+          <Form.Group as={Col} controlId="formGridFirstName">
+            <Form.Control required type="text" placeholder="First Name" name="firstName" value={employee.firstName} onChange={(e) => handleChange(e)} />
+            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="formGridLastName">
+            <Form.Control required type=" text" placeholder="Last Name" name="lastName" value={employee.lastName} onChange={(e) => handleChange(e)} />
+            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group as={Col} controlId="formGridAge">
+            <Form.Control required type="number" placeholder="Age" name="age" value={employee.age} onChange={(e) => handleChange(e)} />
+          </Form.Group>
+        </Form.Row>
+
+        <Form.Row>
+          <Form.Group as={Col} controlId="formGridEmail">
+            <Form.Control required type="email" placeholder="Email" name="email" value={employee.email} onChange={(e) => handleChange(e)} />
+          </Form.Group>
+          <Form.Group as={Col} controlId="formGridPhone">
+            <Form.Control required type="tel" placeholder="Phone" name="phone" value={employee.phone} onChange={(e) => handleChange(e)} />
+          </Form.Group>
+        </Form.Row>
+
+        <Form.Group controlId="formGridAddress1">
+          <Form.Control required placeholder="1234 Main St" name="address" value={employee.address} onChange={(e) => handleChange(e)} />
+        </Form.Group>
+
+        <Form.Group controlId="formGridAddress2">
+          <Form.Control required placeholder="Apartment, studio, or floor" name="addressTwo" value={employee.addressTwo} onChange={(e) => handleChange(e)} />
+        </Form.Group>
+
+        <Form.Row>
+          <Form.Group as={Col} controlId="formGridCity">
+            <Form.Control required placeholder="City" name="city" value={employee.city} onChange={(e) => handleChange(e)} />
+            <Form.Control.Feedback type="invalid">Please provide a valid city.</Form.Control.Feedback>
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="formGridState">
+            <Form.Control required placeholder="State" maxLength="2" name="state" value={employee.state} onChange={(e) => handleChange(e)} />
+            <Form.Control.Feedback type="invalid">Please provide a valid state.</Form.Control.Feedback>
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="formGridZip">
+            <Form.Control required value={employee.zipcode} onChange={(e) => handleChange(e)} placeholder="Zipcode" name="zipcode" type="number" />
+            <Form.Control.Feedback type="invalid">Please provide a valid zip.</Form.Control.Feedback>
+          </Form.Group>
+        </Form.Row>
+
+        <Button variant="primary" type="submit" style={{ float: "right" }}>
+          Submit
+        </Button>
+      </Form>
     </div>
   );
 }

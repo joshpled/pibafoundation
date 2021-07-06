@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function ModalComponent({ show, handleClose, form }) {
   return (
     <>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} className="modalcontainer">
         <div style={{ padding: "30px" }}>
           {form === "volunteer" && <NewVolunteer />}
           {form === "employee" && <NewEmployee />}

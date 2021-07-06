@@ -27,7 +27,6 @@ function Sidebar({ showMenu }) {
   const activeRoute = (routeName) => {
     return location.pathname === routeName ? "active" : "";
   };
-
   return (
     <div className="sidebar">
       <div className="sidebar-header">

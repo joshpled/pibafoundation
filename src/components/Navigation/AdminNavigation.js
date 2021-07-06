@@ -6,6 +6,7 @@ import { useAuth } from "../../context/AuthContext";
 import { Alert, Dropdown } from "react-bootstrap";
 function AdminNavigation({ handleShow }) {
   const [gear, setgear] = useState(false);
+  const [bell, setbell] = useState(false);
   const [error, setError] = useState("");
   const { currentUser, logout } = useAuth();
   const history = useHistory();
@@ -29,8 +30,11 @@ function AdminNavigation({ handleShow }) {
     }
   }
 
-  const handleMouseOver = () => {
+  const handleMouseOverGear = () => {
     setgear((prevState) => !prevState);
+  };
+  const handleMouseOverBell = () => {
+    setbell((prevState) => !prevState);
   };
 
   return (
@@ -40,25 +44,47 @@ function AdminNavigation({ handleShow }) {
       </div>
       {error && <Alert variant="danger">{error}</Alert>}
       {currentUser && currentUser.email}
-      <Dropdown as="div" className="admin-navbar-links">
-        <Dropdown.Toggle variant="default">
-          <div className={`admin-navbar-settings ${gear ? "rotate-center" : ""}`} onMouseOver={handleMouseOver}>
-            <FontAwesomeIcon icon="cog" size="lg" />
-            <div></div>
-          </div>
-        </Dropdown.Toggle>
-        <Dropdown.Menu alignRight aria-labelledby="navbarDropdownMenuLink">
-          <Dropdown.Item onClick={() => history.push("/admin/user-settings")}>
-            <FontAwesomeIcon icon="wrench" size="sm" style={{ marginRight: "10px" }} />
-            Settings
-          </Dropdown.Item>
-          <div className="divider"></div>
-          <Dropdown.Item className="text-danger" onClick={handleLogout}>
-            <FontAwesomeIcon icon="power-off" size="sm" style={{ marginRight: "10px" }} />
-            Log out
-          </Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
+      <div className="admin-navbar-links">
+        <Dropdown as="div">
+          <Dropdown.Toggle variant="default">
+            <div className={`admin-navbar-settings ${bell ? "wobble-hor-top" : ""}`} onMouseOver={handleMouseOverBell} onMouseLeave={handleMouseOverBell}>
+              <FontAwesomeIcon icon="bell" size="lg" />
+            </div>
+            <span className="notification">5</span>
+          </Dropdown.Toggle>
+          <Dropdown.Menu alignRight aria-labelledby="navbarDropdownMenuLink">
+            <Dropdown.Item onClick={() => history.push("/admin/user-settings")}>
+              <FontAwesomeIcon icon="wrench" size="sm" style={{ marginRight: "10px" }} />
+              Settings
+            </Dropdown.Item>
+            <div className="divider"></div>
+            <Dropdown.Item className="text-danger" onClick={handleLogout}>
+              <FontAwesomeIcon icon="power-off" size="sm" style={{ marginRight: "10px" }} />
+              Log out
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+
+        <Dropdown as="div">
+          <Dropdown.Toggle variant="default">
+            <div className={`admin-navbar-settings ${gear ? "rotate-center" : ""}`} onMouseOver={handleMouseOverGear} onMouseLeave={handleMouseOverGear}>
+              <FontAwesomeIcon icon="cog" size="lg" />
+              <div></div>
+            </div>
+          </Dropdown.Toggle>
+          <Dropdown.Menu alignRight aria-labelledby="navbarDropdownMenuLink">
+            <Dropdown.Item onClick={() => history.push("/admin/user-settings")}>
+              <FontAwesomeIcon icon="wrench" size="sm" style={{ marginRight: "10px" }} />
+              Settings
+            </Dropdown.Item>
+            <div className="divider"></div>
+            <Dropdown.Item className="text-danger" onClick={handleLogout}>
+              <FontAwesomeIcon icon="power-off" size="sm" style={{ marginRight: "10px" }} />
+              Log out
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
     </div>
   );
 }

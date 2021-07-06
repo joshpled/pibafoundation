@@ -10,8 +10,8 @@ import NewVolunteer from "./Forms/NewVolunteer";
 
 import Sidebar from "./Sidebar";
 
-import DashboardCard from "./DashboardCard";
-import PersonCard from "./PersonCard";
+import DashboardCard from "./Cards/DashboardCard";
+import PersonCard from "./Cards/PersonCard";
 import CalendarComponent from "./CalendarComponent";
 import ModalComponent from "./ModalComponent";
 import WorkflowStep from "./Workflow/WorkflowStep";
