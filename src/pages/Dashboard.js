@@ -4,8 +4,8 @@ function Dashboard() {
   return (
     <div>
       <div className="dashboard-card">
-        <DashboardCard />
-        <DashboardCard />
+        <DashboardCard icon="wrench" title="Most recent Dog" detailsData="Something will go here" />
+        <DashboardCard icon="bell" title="Most recent Dog" detailsData="Something will go here" />
       </div>
     </div>
   );

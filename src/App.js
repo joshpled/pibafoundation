@@ -11,8 +11,8 @@ function App() {
   let route;
   const { currentUser } = useAuth();
   if (currentUser) {
-    if (localStorage.getItem("path")) {
-      route = <Redirect from="/" to={localStorage.getItem("path")} />;
+    if (sessionStorage.getItem("path")) {
+      route = <Redirect from="/" to={sessionStorage.getItem("path")} />;
     } else {
       route = <Redirect from="/" to="/admin/dashboard" />;
     }

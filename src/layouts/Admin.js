@@ -21,7 +21,7 @@ function Admin() {
   };
 
   useEffect(() => {
-    localStorage.setItem("path", location.pathname);
+    sessionStorage.setItem("path", location.pathname);
   });
   return (
     <div className="wrapper">

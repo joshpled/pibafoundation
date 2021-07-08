@@ -1,12 +1,30 @@
 import React, { useContext, useState, useEffect } from "react";
 import { auth } from "../firebase";
 import firebase from "firebase/app";
+import { ApolloClient, InMemoryCache, HttpLink, from, ApolloProvider } from "@apollo/client";
+import { onError } from "@apollo/client/link/error";
+
+const httpLink = new HttpLink({
+  uri: "http://localhost:5001/",
+});
+
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors)
+    graphQLErrors.forEach(({ message, locations, path }) => console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`));
+
+  if (networkError) console.log(`[Network error]: ${networkError}`);
+});
 
 const AuthContext = React.createContext();
 
 export function useAuth() {
   return useContext(AuthContext);
 }
+
+const client = new ApolloClient({
+  link: from([errorLink, httpLink]),
+  cache: new InMemoryCache(),
+});
 
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
@@ -57,5 +75,9 @@ export function AuthProvider({ children }) {
     updatePassword,
   };
 
-  return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={value}>
+      <ApolloProvider client={client}>{!loading && children}</ApolloProvider>
+    </AuthContext.Provider>
+  );
 }

@@ -3,15 +3,11 @@ import { Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function PersonCard({ userData }) {
-  const { name, position, email, phone, permissions } = userData;
+  const { name, position, email, phone, permissions, photo } = userData;
   return (
     <>
       <Card style={{ width: "14em", margin: "10px", alignItems: "center", paddingTop: "10px" }}>
-        <Card.Img
-          variant="top"
-          src="https://i.imgur.com/5YAGklB.jpeg/100px180"
-          style={{ borderBottom: "solid 2px lightgray", borderRadius: "10%", width: "50%" }}
-        />
+        <Card.Img variant="top" src={photo} style={{ borderBottom: "solid 2px lightgray", borderRadius: "10%", width: "50%" }} />
         <Card.Body>
           <Card.Text as="div">
             <div style={{ display: "flex", alignItems: "center" }}>
