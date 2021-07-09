@@ -3,6 +3,14 @@
   margin: 10px 20px;
 }
 
+.employeeCog-PersonCard {
+  width: 100%;
+  display: flex;
+  place-content: flex-end;
+  padding: 0 10px 0 0;
+  cursor: pointer;
+}
+
 .employee-add-new:hover {
   animation: scale-up 0.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
