@@ -14,6 +14,9 @@ import {
   faPowerOff,
   faBezierCurve,
   faBell,
+  faUpload,
+  faFileUpload,
+  faCloudUploadAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 
@@ -34,5 +37,8 @@ export default library.add(
   faWrench,
   faPowerOff,
   faBezierCurve,
-  faBell
+  faBell,
+  faUpload,
+  faFileUpload,
+  faCloudUploadAlt
 );

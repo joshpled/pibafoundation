@@ -3,6 +3,7 @@ import { Form, Button, Col } from "react-bootstrap";
 import fetchGraph from "helper/fetchGraph";
 
 function NewVolunteer() {
+  // eslint-disable-next-line
   const [validated, setValidated] = useState(false);
   const [volunteer, setVolunteer] = useState({
     firstName: "",

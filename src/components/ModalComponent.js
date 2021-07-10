@@ -3,13 +3,13 @@ import { Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { NewVolunteer, NewEmployee } from "components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function ModalComponent({ show, handleClose, form, update, person }) {
+function ModalComponent({ show, handleClose, form, update, person, forceUpdate }) {
   return (
     <>
       <Modal show={show} onHide={handleClose} className="modalcontainer">
         <div style={{ padding: "30px" }}>
           {form === "volunteer" && <NewVolunteer />}
-          {form === "employee" && <NewEmployee update={update} employeeObj={person} />}
+          {form === "employee" && <NewEmployee update={update} employeeObj={person} handleClose={handleClose} forceUpdate={() => forceUpdate()} />}
 
           <OverlayTrigger
             key="left"

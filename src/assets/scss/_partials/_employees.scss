@@ -15,6 +15,16 @@
   animation: scale-up 0.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
+.employee-form-file {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: flex-end;
+  input {
+    margin-left: 10px;
+  }
+}
+
 @keyframes scale-up {
   0% {
     transform: scale(1);
@@ -50,4 +60,14 @@
     transform: translateX(0);
     opacity: 1;
   }
+}
+
+input[type="file"] {
+  display: none;
+}
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-left: 10px;
 }

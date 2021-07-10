@@ -2,11 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Form, Button, Col, Spinner, Alert, Image } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
 import { updateEmployeeQuery, deleteEmployeeQuery, newEmployeeQuery } from "gqlQueries/employeeQueries";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function NewEmployee({ update, employeeObj }) {
+function NewEmployee({ update, employeeObj, handleClose, forceUpdate }) {
   const [validated, setValidated] = useState(false);
   const [deleteError, showError] = useState(false);
   const [employee, setEmployee] = useState({});
+  const [photo, setPhoto] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [mutationError, showMutationError] = useState("");
 
   const [addEmployee] = useMutation(newEmployeeQuery);
   const [updateEmployee] = useMutation(updateEmployeeQuery);
@@ -15,6 +19,7 @@ function NewEmployee({ update, employeeObj }) {
   useEffect(() => {
     const abortController = new AbortController();
     if (update && employeeObj) {
+      setPhoto(true);
       setEmployee((prev) => {
         setEmployee({
           name: employeeObj.name,
@@ -38,11 +43,15 @@ function NewEmployee({ update, employeeObj }) {
   };
 
   const handleDeleteEmployee = () => {
-    deleteEmployee({ variables: { id: employeeObj.id } });
+    deleteEmployee({ variables: { id: employeeObj.id } })
+      .then((response) => {
+        handleClose();
+        window.location.reload();
+      })
+      .catch((error) => showMutationError(error.message));
   };
 
   const handleSubmit = (e) => {
-    handleUpload(e);
     e.preventDefault();
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
@@ -59,8 +68,16 @@ function NewEmployee({ update, employeeObj }) {
               email: employee.email,
               phone: employee.phone,
               permissions: employee.permissions,
+              photo: employee.photo,
             },
           })
+            .then((response) => {
+              handleClose();
+              forceUpdate();
+            })
+            .catch((error) => {
+              showMutationError(error.message);
+            })
         : addEmployee({
             variables: {
               name: employee.name,
@@ -68,17 +85,26 @@ function NewEmployee({ update, employeeObj }) {
               email: employee.email,
               phone: employee.phone,
               permissions: employee.permissions,
+              photo: employee.photo,
             },
-          });
+          })
+            .then((response) => {
+              handleClose();
+              forceUpdate();
+            })
+            .catch((error) => {
+              showMutationError(error.message);
+            });
     }
   };
 
   const handleUpload = (event) => {
-    const file = event.target["formGridUploadImage"].files[0];
+    setLoading(true);
+    const file = event.target.files[0];
     const formData = new FormData();
     formData.append("image", file, "image");
 
-    fetch("https://api.imgur.com/3/upload", {
+    fetch("https://api.imgur.com/3/image", {
       method: "POST",
       mode: "cors",
       headers: {
@@ -87,14 +113,15 @@ function NewEmployee({ update, employeeObj }) {
       body: formData,
     })
       .then((response) => response.json())
-      .then((data) => {
-        debugger;
+      .then(({ data }) => {
+        setPhoto(true);
+        setLoading(false);
+        setEmployee((prev) => setEmployee({ ...prev, photo: data.link }));
       })
       .catch((error) => {
         console.error(error);
       });
   };
-
   const determineLoading = () => {
     if (employee) {
       return (
@@ -102,10 +129,29 @@ function NewEmployee({ update, employeeObj }) {
           {update ? <h3>Update {employee.name}</h3> : <h3>New Employee</h3>}
           <hr></hr>
           <Form.Row>
-            <Form.Group as={Col} controlId="formGridUploadImage">
-              <Image src={employee.photo ? employee.photo : ""} rounded style={{ borderBottom: "solid 2px lightgray", borderRadius: "10%", width: "20%" }} />
-              <Form.Control type="file" name="picture" style={{ width: "30%" }} />
-              (10mb Limit)
+            <Form.Group as={Col} controlId="formGridUploadImage" className="employee-form-file">
+              <Image
+                src={employee.photo ? employee.photo : ""}
+                rounded
+                style={{ borderBottom: "solid 2px lightgray", borderRadius: "10%", width: "120px", height: "120px", objectFit: "cover" }}
+              />
+              <label
+                htmlFor="file-upload"
+                className="custom-file-upload"
+                style={{ backgroundColor: loading ? "rgba(152, 152, 152, 0.599" : "", cursor: loading ? "none" : "pointer" }}
+              >
+                <FontAwesomeIcon icon="cloud-upload-alt" />
+                {loading ? (
+                  <>
+                    <Spinner animation="grow" size="sm" className="ml-1 mr-1" /> Uploading...
+                  </>
+                ) : photo ? (
+                  "Change Photo (10mb limit)"
+                ) : (
+                  "Choose Photo (10mb limit)"
+                )}
+              </label>
+              <input id="file-upload" type="file" onChange={handleUpload} disabled={loading} accept="image/png, image/jpeg" />
             </Form.Group>
           </Form.Row>
           <Form.Row>
@@ -131,13 +177,12 @@ function NewEmployee({ update, employeeObj }) {
             <Form.Group as={Col} controlId="formGridPermissions">
               <Form.Control required type="text" placeholder="Permissions" name="permissions" value={employee.permissions} onChange={(e) => handleChange(e)} />
             </Form.Group>
-            {update && (
-              <Button variant="danger" size="sm" onClick={() => showError(true)} style={{ height: "fit-content", padding: "5px" }}>
-                Delete Employee
-              </Button>
-            )}
           </Form.Row>
-
+          {update && (
+            <Button variant="danger" size="sm" onClick={() => showError(true)} style={{ height: "fit-content", padding: "5px" }}>
+              Delete Employee
+            </Button>
+          )}
           <Button variant="primary" type="submit" style={{ float: "right" }}>
             Submit
           </Button>
@@ -154,6 +199,10 @@ function NewEmployee({ update, employeeObj }) {
 
   return (
     <div>
+      <Alert show={mutationError} variant="danger" onClose={() => showMutationError("")} dismissible>
+        {mutationError && mutationError}
+      </Alert>
+
       <Alert show={deleteError} variant="danger" onClose={() => showError(false)} dismissible>
         Are you sure?
         <Button variant="danger" size="sm" style={{ float: "right" }} onClick={handleDeleteEmployee}>

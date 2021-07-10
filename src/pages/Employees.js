@@ -5,8 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import generateKey from "../helper/generateKey";
 import { useQuery } from "@apollo/client";
 import { getEmployeesQuery } from "gqlQueries/employeeQueries";
+import useForceUpdate from "customHooks/useForceUpdate";
 
 function Employees() {
+  const forceUpdate = useForceUpdate();
   const [show, setShow] = useState(false);
   const [showError, setShowError] = useState("");
   const [update, setUpdate] = useState(false);
@@ -54,6 +56,7 @@ function Employees() {
               <FontAwesomeIcon icon="plus-circle" size="2x" />
             </div>
           </div>
+          {employees.length === 0 && <h1 className="display-3">No Employees</h1>}
           <div style={{ display: "flex" }}>
             {employees.map(({ id, name, position, email, phone, permissions, photo }, key) => (
               <div className="slide-in-right" style={{ animationDelay: `${key * 0.1}s` }} key={generateKey(id)}>
@@ -67,11 +70,20 @@ function Employees() {
                     permissions,
                     photo,
                   }}
+                  handleUpdate={handleUpdate}
                 />
               </div>
             ))}
           </div>
-          <ModalComponent show={show} handleShow={handleShow} handleClose={handleClose} form="employee" update={update} person={updateEmployee} />
+          <ModalComponent
+            show={show}
+            handleShow={handleShow}
+            handleClose={handleClose}
+            form="employee"
+            update={update}
+            person={updateEmployee}
+            forceUpdate={() => forceUpdate()}
+          />
         </>
       )}
       {showError && (
