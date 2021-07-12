@@ -90,7 +90,7 @@ function NewEmployee({ update, employeeObj, handleClose, forceUpdate }) {
           })
             .then((response) => {
               handleClose();
-              forceUpdate();
+              window.location.reload();
             })
             .catch((error) => {
               showMutationError(error.message);
