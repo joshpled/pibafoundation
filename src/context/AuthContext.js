@@ -7,7 +7,7 @@ import { onError } from "@apollo/client/link/error";
 const httpLink = new HttpLink({
   uri: process.env.PRODUCTION ? "https://piba-server.herokuapp.com/" : "http://localhost:5001/",
 });
-
+console.log(process.env);
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
     graphQLErrors.forEach(({ message, locations, path }) => console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`));
