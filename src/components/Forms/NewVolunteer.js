@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Form, Button, Col } from "react-bootstrap";
-import fetchGraph from "helper/fetchGraph";
 
 function NewVolunteer() {
   // eslint-disable-next-line
@@ -23,30 +22,17 @@ function NewVolunteer() {
       return { ...prevValues, [e.target.name]: e.target.value };
     });
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(volunteer);
 
-    // const form = e.currentTarget;
-    // if (form.checkValidity() === false) {
-    //   e.preventDefault();
-    //   e.stopPropagation();
-    // }
-    // setValidated(true);
+  // const form = e.currentTarget;
+  // if (form.checkValidity() === false) {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  // }
+  // setValidated(true);
 
-    fetchGraph(`mutation{
-        createVolunteer(newVolunteer:
-            ${volunteer}){
-            id
-            firstName
-          }
-}`).then((data) => {
-      debugger;
-    });
-  };
   return (
     <div>
-      <Form noValidate validated={validated} onSubmit={handleSubmit}>
+      <Form noValidate validated={validated}>
         <h3>New Volunteer</h3>
         <hr></hr>
         <Form.Row>
