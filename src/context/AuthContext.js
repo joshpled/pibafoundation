@@ -4,8 +4,15 @@ import firebase from "firebase/app";
 import { ApolloClient, InMemoryCache, HttpLink, from, ApolloProvider } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
 
+let serverUri = () => {
+  if (process.env.NODE_ENV === "production") {
+    return "https://piba-server.herokuapp.com/";
+  } else {
+    return "http://localhost:5001/";
+  }
+};
 const httpLink = new HttpLink({
-  uri: process.env.PRODUCTION ? "https://piba-server.herokuapp.com/" : "http://localhost:5001/",
+  uri: serverUri,
 });
 console.log(process.env);
 const errorLink = onError(({ graphQLErrors, networkError }) => {
