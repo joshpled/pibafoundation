@@ -5,7 +5,7 @@ import { ApolloClient, InMemoryCache, HttpLink, from, ApolloProvider } from "@ap
 import { onError } from "@apollo/client/link/error";
 
 const httpLink = new HttpLink({
-  uri: "http://localhost:5001/",
+  uri: process.env.PRODUCTION ? "https://piba-server.herokuapp.com/" : "http://localhost:5001/",
 });
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
