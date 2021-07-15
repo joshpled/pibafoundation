@@ -4,11 +4,11 @@ import routes from "routes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAuth } from "../../context/AuthContext";
 import { Alert, Dropdown } from "react-bootstrap";
-function AdminNavigation({ handleShow }) {
+function AdminNavigation({ handleShow, userInfo }) {
   const [gear, setgear] = useState(false);
   const [bell, setbell] = useState(false);
   const [error, setError] = useState("");
-  const { currentUser, logout } = useAuth();
+  const { logout } = useAuth();
   const history = useHistory();
   let location = useLocation();
   const getBrandText = () => {
@@ -43,7 +43,7 @@ function AdminNavigation({ handleShow }) {
         <FontAwesomeIcon icon="bars" size="lg" className="admin-navbar-burgermenu" onClick={handleShow} /> {getBrandText()}
       </div>
       {error && <Alert variant="danger">{error}</Alert>}
-      {currentUser && currentUser.email}
+      Logged in as {userInfo && userInfo.name}
       <div className="admin-navbar-links">
         <Dropdown as="div">
           <Dropdown.Toggle variant="default">

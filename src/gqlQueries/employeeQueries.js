@@ -50,4 +50,18 @@ const getEmployeesQuery = gql`
   }
 `;
 
-export { updateEmployeeQuery, deleteEmployeeQuery, newEmployeeQuery, getEmployeesQuery };
+const getEmployeeQuery = gql`
+  query GetEmployee($email: String!) {
+    getEmployee(emailId: $email) {
+      id
+      name
+      position
+      email
+      phone
+      permissions
+      photo
+    }
+  }
+`;
+
+export { updateEmployeeQuery, deleteEmployeeQuery, newEmployeeQuery, getEmployeesQuery, getEmployeeQuery };

@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/client";
 import { updateEmployeeQuery, deleteEmployeeQuery, newEmployeeQuery } from "gqlQueries/employeeQueries";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function NewEmployee({ update, employeeObj, handleClose, forceUpdate }) {
+function EmployeeForm({ update, employeeObj, handleClose, forceUpdate, permissions }) {
   const [validated, setValidated] = useState(false);
   const [deleteError, showError] = useState(false);
   const [employee, setEmployee] = useState({});
@@ -173,12 +173,27 @@ function NewEmployee({ update, employeeObj, handleClose, forceUpdate }) {
             </Form.Group>
           </Form.Row>
 
-          <Form.Row>
-            <Form.Group as={Col} controlId="formGridPermissions">
-              <Form.Control required type="text" placeholder="Permissions" name="permissions" value={employee.permissions} onChange={(e) => handleChange(e)} />
-            </Form.Group>
-          </Form.Row>
-          {update && (
+          {permissions && permissions === "Admin" && (
+            <Form.Row>
+              <Form.Group as={Col} controlId="formGridPermissions">
+                <Form.Label>Permissions:</Form.Label>
+                <div key={`inline-radio`} className="mb-3">
+                  <Form.Check inline label="Admin" value="Admin" name="permissions" type="radio" id={`inline-radio-1`} onChange={(e) => handleChange(e)} />
+                  <Form.Check
+                    inline
+                    label="Employee"
+                    value="Employee"
+                    name="permissions"
+                    type="radio"
+                    id={`inline-radio-2`}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <Form.Check inline label="None" value="None" name="permissions" type="radio" id={`inline-radio-3`} onChange={(e) => handleChange(e)} />
+                </div>
+              </Form.Group>
+            </Form.Row>
+          )}
+          {update && permissions && permissions === "Admin" && (
             <Button variant="danger" size="sm" onClick={() => showError(true)} style={{ height: "fit-content", padding: "5px" }}>
               Delete Employee
             </Button>
@@ -214,4 +229,4 @@ function NewEmployee({ update, employeeObj, handleClose, forceUpdate }) {
   );
 }
 
-export default NewEmployee;
+export default EmployeeForm;

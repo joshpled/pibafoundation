@@ -1,8 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
 import { auth } from "../firebase";
 import firebase from "firebase/app";
-import { ApolloClient, InMemoryCache, HttpLink, from, ApolloProvider } from "@apollo/client";
+import { ApolloClient, InMemoryCache, HttpLink, from, ApolloProvider, useQuery } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
+import { getEmployeeQuery } from "gqlQueries/employeeQueries";
 
 let serverUri = () => {
   if (process.env.NODE_ENV === "production") {
@@ -11,10 +12,11 @@ let serverUri = () => {
     return "http://localhost:5001/";
   }
 };
+
 const httpLink = new HttpLink({
   uri: serverUri,
 });
-console.log(process.env);
+
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
     graphQLErrors.forEach(({ message, locations, path }) => console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`));

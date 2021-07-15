@@ -6,11 +6,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 let year = new Date();
 
-function Sidebar({ showMenu }) {
+function Sidebar({ showMenu, permissions }) {
   let location = useLocation();
   const createRoutes = (routes) => {
     return routes.map(({ name, path, layout, icon, show }, key) => {
-      if (layout === "/admin" && show) {
+      if (layout === "/admin" && show && permissions && permissions.permissions === "Admin") {
         return (
           <Link key={key} to={layout + path} style={{ textDecoration: "none" }}>
             <li className={`sidebar-navlink ${activeRoute(layout + path) ? "active" : ""}`}>

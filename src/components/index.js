@@ -5,7 +5,7 @@ import DogTable from "./Tables/DogTable";
 
 import NewAdopter from "./Forms/NewAdopter";
 import NewDog from "./Forms/NewDog";
-import NewEmployee from "./Forms/NewEmployee";
+import EmployeeForm from "./Forms/EmployeeForm";
 import NewVolunteer from "./Forms/NewVolunteer";
 
 import Sidebar from "./Sidebar";
@@ -26,7 +26,7 @@ export {
   DogTable,
   NewAdopter,
   NewDog,
-  NewEmployee,
+  EmployeeForm,
   NewVolunteer,
   Sidebar,
   DashboardCard,

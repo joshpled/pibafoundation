@@ -6,9 +6,11 @@ import generateKey from "../helper/generateKey";
 import { useQuery } from "@apollo/client";
 import { getEmployeesQuery } from "gqlQueries/employeeQueries";
 import useForceUpdate from "customHooks/useForceUpdate";
+import { useAuth } from "../context/AuthContext";
 
-function Employees() {
+function Employees({ userInfo }) {
   const forceUpdate = useForceUpdate();
+
   const [show, setShow] = useState(false);
   const [showError, setShowError] = useState("");
   const [update, setUpdate] = useState(false);
@@ -16,7 +18,7 @@ function Employees() {
   const [updateEmployee, setupdateEmployee] = useState({});
 
   const { loading, error, data } = useQuery(getEmployeesQuery);
-  useEffect(() => {
+  const employeeInfo = useEffect(() => {
     const abortController = new AbortController();
 
     error && setShowError(error.message);
@@ -52,9 +54,11 @@ function Employees() {
       ) : (
         <>
           <div style={{ height: "fit-content" }}>
-            <div className="employee-add-new" onClick={handleShow}>
-              <FontAwesomeIcon icon="plus-circle" size="2x" />
-            </div>
+            {userInfo && userInfo.permissions === "Admin" && (
+              <div className="employee-add-new" onClick={handleShow}>
+                <FontAwesomeIcon icon="plus-circle" size="2x" />
+              </div>
+            )}
           </div>
           {employees.length === 0 && <h1 className="display-3">No Employees</h1>}
           <div style={{ display: "flex" }}>
@@ -83,6 +87,7 @@ function Employees() {
             update={update}
             person={updateEmployee}
             forceUpdate={() => forceUpdate()}
+            permissions={userInfo.permissions}
           />
         </>
       )}
