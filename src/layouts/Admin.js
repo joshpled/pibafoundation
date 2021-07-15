@@ -11,7 +11,7 @@ import { useQuery } from "@apollo/client";
 
 function Admin() {
   const { currentUser } = useAuth();
-  const { loading, error, data } = useQuery(getEmployeeQuery, {
+  const { data } = useQuery(getEmployeeQuery, {
     variables: { email: currentUser && currentUser.email },
   });
   let location = useLocation();

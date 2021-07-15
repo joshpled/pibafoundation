@@ -6,7 +6,6 @@ import generateKey from "../helper/generateKey";
 import { useQuery } from "@apollo/client";
 import { getEmployeesQuery } from "gqlQueries/employeeQueries";
 import useForceUpdate from "customHooks/useForceUpdate";
-import { useAuth } from "../context/AuthContext";
 
 function Employees({ userInfo }) {
   const forceUpdate = useForceUpdate();
@@ -18,7 +17,7 @@ function Employees({ userInfo }) {
   const [updateEmployee, setupdateEmployee] = useState({});
 
   const { loading, error, data } = useQuery(getEmployeesQuery);
-  const employeeInfo = useEffect(() => {
+  useEffect(() => {
     const abortController = new AbortController();
 
     error && setShowError(error.message);
